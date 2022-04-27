@@ -27,4 +27,7 @@ void SceneObject::AddChild(SceneObject *child) {
 SceneObject::SceneObject(const string &name) : name(name) {
 
 }
+void SceneObject::SetLocalScale(glm::vec3 scale) {
+  this->transform_.scale = scale;
+}
 
