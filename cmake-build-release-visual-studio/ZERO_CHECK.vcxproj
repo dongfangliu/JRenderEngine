@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{54EA9F64-72FF-3313-8CA0-349E3D63ED8C}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ZERO_CHECK</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\6bfdfd05ba03a001c3740b5e1667c1e6\generate.stamp.rule">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -SE:/Mycodes/c++/JRenderEngine -BE:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/JRenderEngine.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Mycodes\c++\JRenderEngine\CMakeLists.txt;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeDependentOption.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeFindDependencyMacro.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeRCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageMessage.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindZLIB.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glm\glm-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\utf8cpp\utf8cppConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;E:\vcpkg-2022.04.12\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -SE:/Mycodes/c++/JRenderEngine -BE:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/JRenderEngine.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Mycodes\c++\JRenderEngine\CMakeLists.txt;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeDependentOption.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeFindDependencyMacro.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeRCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageMessage.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindZLIB.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glm\glm-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\utf8cpp\utf8cppConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;E:\vcpkg-2022.04.12\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -SE:/Mycodes/c++/JRenderEngine -BE:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/JRenderEngine.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\Mycodes\c++\JRenderEngine\CMakeLists.txt;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeDependentOption.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeFindDependencyMacro.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeRCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageMessage.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindZLIB.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glm\glm-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\utf8cpp\utf8cppConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;E:\vcpkg-2022.04.12\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -SE:/Mycodes/c++/JRenderEngine -BE:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/JRenderEngine.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\Mycodes\c++\JRenderEngine\CMakeLists.txt;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\3.21.1\CMakeSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeDependentOption.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeFindDependencyMacro.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeRCInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindPackageMessage.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\FindZLIB.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\share\cmake-3.21\Modules\SelectLibraryConfigurations.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\assimp\assimpConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glad\gladTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glfw3\glfw3Targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\glm\glm-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-config.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\irrlicht\irrlicht-targets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\kubazip\kubazipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipConfigVersion.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\minizip\minizipTargets.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\poly2tri\poly2triConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-debug.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig-release.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\polyclipping\polyclippingConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\utf8cpp\utf8cppConfig.cmake;E:\vcpkg-2022.04.12\installed\x64-windows\share\zlib\vcpkg-cmake-wrapper.cmake;E:\vcpkg-2022.04.12\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\Mycodes\c++\JRenderEngine\cmake-build-release-visual-studio\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

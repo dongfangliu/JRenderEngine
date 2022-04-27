@@ -1,0 +1,5 @@
+"E:\Program Files\JetBrains\CLion 2021.3\bin\cmake\win\bin\cmake.exe" -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=E:\vcpkg-2022.04.12/scripts/buildsystems/vcpkg.cmake E:\Mycodes\c++\JRenderEngine
+-- Selecting Windows SDK version 10.0.19041.0 to target Windows 10.0.19042.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio

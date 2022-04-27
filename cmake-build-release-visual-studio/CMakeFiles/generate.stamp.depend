@@ -1,0 +1,67 @@
+# CMake generation dependency list for this directory.
+E:/Mycodes/c++/JRenderEngine/CMakeLists.txt
+E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/CMakeFiles/3.21.1/CMakeCCompiler.cmake
+E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/CMakeFiles/3.21.1/CMakeCXXCompiler.cmake
+E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/CMakeFiles/3.21.1/CMakeRCCompiler.cmake
+E:/Mycodes/c++/JRenderEngine/cmake-build-release-visual-studio/CMakeFiles/3.21.1/CMakeSystem.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCXXInformation.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeDependentOption.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeFindDependencyMacro.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeGenericSystem.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeRCInformation.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/MSVC-C.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Compiler/MSVC-CXX.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/FindPackageMessage.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/FindZLIB.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-MSVC-C.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-MSVC-CXX.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows-MSVC.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/Windows.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/Platform/WindowsPaths.cmake
+E:/Program Files/JetBrains/CLion 2021.3/bin/cmake/win/share/cmake-3.21/Modules/SelectLibraryConfigurations.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/assimp/assimpConfig-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/assimp/assimpConfig-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/assimp/assimpConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/assimp/assimpConfigVersion.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glad/gladConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glad/gladConfigVersion.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glad/gladTargets-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glad/gladTargets-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glad/gladTargets.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glfw3/glfw3Config.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glfw3/glfw3ConfigVersion.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glfw3/glfw3Targets-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glfw3/glfw3Targets-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glfw3/glfw3Targets.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/glm/glm-config.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/irrlicht/irrlicht-config.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/irrlicht/irrlicht-targets-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/irrlicht/irrlicht-targets-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/irrlicht/irrlicht-targets.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/kubazip/kubazipConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/kubazip/kubazipConfigVersion.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/kubazip/kubazipTargets-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/kubazip/kubazipTargets-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/kubazip/kubazipTargets.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/minizip/minizipConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/minizip/minizipConfigVersion.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/minizip/minizipTargets-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/minizip/minizipTargets-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/minizip/minizipTargets.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/poly2tri/poly2triConfig-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/poly2tri/poly2triConfig-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/poly2tri/poly2triConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/polyclipping/polyclippingConfig-debug.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/polyclipping/polyclippingConfig-release.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/polyclipping/polyclippingConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/utf8cpp/utf8cppConfig.cmake
+E:/vcpkg-2022.04.12/installed/x64-windows/share/zlib/vcpkg-cmake-wrapper.cmake
+E:/vcpkg-2022.04.12/scripts/buildsystems/vcpkg.cmake
