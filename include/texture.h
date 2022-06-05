@@ -5,19 +5,22 @@
 #ifndef JRENDERENGINE_INCLUDE_TEXTURE_H_
 #define JRENDERENGINE_INCLUDE_TEXTURE_H_
 #include <string>
+#include <vector>
 #include "glad/glad.h"
+#include <assimp/material.h>
+#include <assimp/pbrmaterial.h>
 using namespace  std;
 class Texture {
  public:
   unsigned int id;
-  string type;
+  aiTextureType type;
   string path;
  private:
-  unsigned char * data;
+  vector<unsigned char>data;
   int width,height, nrComponents;
   GLenum format;
  public:
-  Texture(const string &type, const string &path);
+  Texture(const aiTextureType &type, const string &path);
   Texture();
    ~Texture();
 

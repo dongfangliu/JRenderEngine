@@ -17,7 +17,11 @@ add_executable (JRenderEngine "JRenderEngine.cpp"
 
         src/texture.cpp
 
-        src/shape.cpp src/light.cpp include/light.h src/transform.cpp include/transform.h src/scene.cpp include/scene.h)
+        src/geometry.cpp src/light.cpp 
+        include/light.h src/transform.cpp 
+        include/transform.h src/scene.cpp 
+        include/scene.h 
+        "include/material.h")
  
 target_include_directories(JRenderEngine PUBLIC include)
 

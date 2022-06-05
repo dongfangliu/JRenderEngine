@@ -5,25 +5,13 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "geometry.h"
 #include "shader.h"
 #include "texture.h"
 #include <string>
 #include <vector>
 using namespace std;
 
-struct Vertex {
-    // position
-    glm::vec3 Position;
-    // normal
-    glm::vec3 Normal;
-    // texCoords
-    glm::vec2 TexCoords;
-    // tangent
-    glm::vec3 Tangent;
-    // bitangent
-    glm::vec3 Bitangent;
-};
 
 
 class Mesh {
@@ -31,11 +19,11 @@ public:
     // mesh Data
     vector<Vertex>       vertices;
     vector<unsigned int> indices;
-    vector<Texture>      textures;
     unsigned int VAO;
+    unsigned int materialIndex; 
 
     // constructor
-    Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
+    Mesh(vector<Vertex> vertices, vector<unsigned int> indices, unsigned int materialIndex);
 
     // render the mesh
     void Draw(Shader shader);

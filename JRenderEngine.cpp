@@ -21,7 +21,7 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 // camera
-Camera camera(glm::vec3(0.0f, 10.0f, 20.0f));
+Camera camera(glm::vec3(0.0f, 30.0f, 0.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -29,7 +29,14 @@ bool firstMouse = true;
 // timing
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
-
+// lights
+// ------
+glm::vec3 lightPositions[] = {
+    glm::vec3(0.0, 30.0, 0),
+};
+glm::vec3 lightColors[] = {
+    glm::vec3(1.0f, 1.0f, 1.0f),
+};
 int main()
 {
   // glfw: initialize and configure
@@ -38,6 +45,8 @@ int main()
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+//  glEnable(GL_CULL_FACE);
+//  glCullFace(GL_BACK);
 
 #ifdef __APPLE__
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -74,15 +83,14 @@ int main()
   // configure global opengl state
   // -----------------------------
   glEnable(GL_DEPTH_TEST);
-
+  glEnable(GL_CULL_FACE);
   // build and compile shaders
   // -------------------------
-  Shader ourShader("./shaders/1.model_loading.vs", "./shaders/1.model_loading.fs");
+  Shader ourShader("./shaders/1.model_loading.vert", "./shaders/1.model_loading.frag");
 
   // load models
   // -----------
-  Model ourModel("./models/nanosuit/nanosuit.obj");
-
+  Model ourModel("./models/sponza/Sponza.gltf");
 
   // draw in wireframe
   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -103,14 +111,19 @@ int main()
 
     // render
     // ------
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glClearColor(1.0f, 0.05f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // don't forget to enable shader before setting uniforms
     ourShader.use();
+    ourShader.setVec3("camPos",camera.Position);
+    for (unsigned int i = 0; i < sizeof(lightPositions) / sizeof(lightPositions[0]); ++i) {
 
+      ourShader.setVec3("lightPositions[" + std::to_string(i) + "]", lightPositions[i]);
+      ourShader.setVec3("lightColors[" + std::to_string(i) + "]", lightColors[i]);
+    }
     // view/projection transformations
-    glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
     glm::mat4 view = camera.GetViewMatrix();
     ourShader.setMat4("projection", projection);
     ourShader.setMat4("view", view);
@@ -118,7 +131,7 @@ int main()
     // render the loaded model
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-    model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+    model = glm::scale(model, glm::vec3(0.1F));	// it's a bit too big for our scene, so scale it down
     ourShader.setMat4("model", model);
     ourModel.Draw(ourShader);
 

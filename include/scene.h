@@ -28,9 +28,9 @@ class SceneObject{
   void AddChild(SceneObject* child);
   [[nodiscard]] const glm::mat4 &GetWorldTransform() const;
 
-  template<class T> T* GetComponent(){
+  template<class T> T& GetComponent(){
     if(components_.find(typeid(T))!=components_.end() && !components_[typeid(T)].empty()){
-      return static_pointer_cast<T*>(components_[typeid(T)][0]);
+      return static_pointer_cast<T&>(components_[typeid(T)][0]);
     }else{
       return nullptr;
     }
@@ -43,11 +43,11 @@ class SceneObject{
       return {};
     }
   }
-  template<class T> void AddComponent(T* component){
+  template<class T> void AddComponent(T& component){
     if(components_.find(typeid(T))!=components_.end()){
       components_[typeid(T)].push_back(component);
     }else{
-      vector<T*> v;v.push_back(component);
+      vector<T&> v;v.push_back(component);
       components_[typeid(T)] = v;
     }
   }

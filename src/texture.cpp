@@ -7,13 +7,18 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 #include <iostream>
-Texture::Texture(const string &type,
+Texture::Texture(const aiTextureType&type,
                  const string &path)
     : type(type), path(path) {
 
+    unsigned char * load_data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
+    if (load_data) {
+        data.resize(width * height * nrComponents);
+        memcpy(data.data(), load_data, sizeof(unsigned char) * width * height * nrComponents);
 
-  data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
-  if (data)
+        stbi_image_free(load_data);
+    }
+  if (!data.empty())
   {
     format = 0;
     if (nrComponents == 1)
@@ -22,19 +27,16 @@ Texture::Texture(const string &type,
       format = GL_RGB;
     else if (nrComponents == 4)
       format = GL_RGBA;
-    SetupGL();
   }
   else
   {
     std::cout << "Texture failed to load at path: " << path << std::endl;
-    stbi_image_free(data);
-    data = nullptr;
   }
 }
 void Texture::SetupGL()  {
   glGenTextures(1, &id);
   glBindTexture(GL_TEXTURE_2D, id);
-  glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+  glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data.data());
   glGenerateMipmap(GL_TEXTURE_2D);
 
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -42,9 +44,7 @@ void Texture::SetupGL()  {
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
+
 Texture::Texture() {}
 Texture::~Texture() {
-  if(data){
-    stbi_image_free(data);
-  }
 }
