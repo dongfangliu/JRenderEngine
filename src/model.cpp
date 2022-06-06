@@ -25,20 +25,20 @@ void Model::Draw(Shader &shader) {
     if (!material.baseColorTexture.empty()) {
       shader.setInt("baseColorMap", 0);
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.baseColorTexture].id);
+      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.baseColorTexture]->id);
     }
     if (!material.normalTexture.empty()) {
       shader.setInt("normalMap", 1);
       shader.setBool("useNormalMap", true);
       glActiveTexture(GL_TEXTURE1);
-      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.normalTexture].id);
+      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.normalTexture]->id);
     } else {
       shader.setBool("useNormalMap", false);
     }
     if (!material.metallicRoughnessTexture.empty()) {
       shader.setInt("metallicRoughnessMap", 2);
       glActiveTexture(GL_TEXTURE2);
-      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.metallicRoughnessTexture].id);
+      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.metallicRoughnessTexture]->id);
     }
     shader.setInt("alphaMode", material.alphaMode);
     shader.setFloat("alphaCutOff", material.alphaCutOff);
@@ -48,10 +48,7 @@ void Model::Draw(Shader &shader) {
     } else {
       glEnable(GL_CULL_FACE);
     }
-    glBindVertexArray(mesh.VAO);
-    glDrawElements(GL_TRIANGLES, mesh.indices.size(), GL_UNSIGNED_INT, 0);
-    // always good practice to set everything back to defaults once configured.
-    glBindVertexArray(0);
+    mesh.Draw();
     glActiveTexture(GL_TEXTURE0);
     glDisable(GL_CULL_FACE);
   }
@@ -134,9 +131,6 @@ void Model::processMaterials(const aiScene *scene) {
     }
 
   }
-  for (auto &kv : textures_loaded) {
-    kv.second.SetupGL();
-  }
 
 };
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
@@ -195,8 +189,8 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
   // return a mesh object created from the extracted mesh data
   return {vertices, indices, mesh->mMaterialIndex};
 }
-vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type) {
-  vector<Texture> textures;
+vector<shared_ptr<Texture>> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type) {
+  vector<shared_ptr<Texture>> textures;
   for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
     aiString str;
     mat->GetTexture(type, i, &str);
@@ -204,7 +198,7 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type)
     bool skip = false;
     string texture_path = directory + "/" + str.C_Str();
     for (auto &j : textures_loaded) {
-      if (std::strcmp(j.second.path.data(), texture_path.data()) == 0 && type == j.second.type) {
+      if (std::strcmp(j.second->path.data(), texture_path.data()) == 0 ) {
 
         textures.push_back(j.second);
         skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
@@ -212,11 +206,17 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type)
       }
     }
     if (!skip) {   // if texture hasn't been loaded already, load it
-      Texture texture(type, texture_path);
+      shared_ptr<Texture>  texture = make_shared<Texture>(texture_path);
       textures.push_back(texture);
       textures_loaded[texture_path] =
           texture;  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
     }
   }
   return textures;
+}
+void Model::SetupGL() {
+  for (auto &kv : textures_loaded) {
+    kv.second->SetupGL();
+  }
+  for(auto& mesh:meshes){mesh.SetupGL();}
 }

@@ -8,7 +8,7 @@
 #include "shader.h"
 #include "camera.h"
 #include "model.h"
-
+#include "skybox.h"
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -16,6 +16,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow *window);
 
+void drawLight(Shader &shader);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
@@ -45,8 +46,6 @@ int main()
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-//  glEnable(GL_CULL_FACE);
-//  glCullFace(GL_BACK);
 
 #ifdef __APPLE__
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -83,18 +82,21 @@ int main()
   // configure global opengl state
   // -----------------------------
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
   // build and compile shaders
   // -------------------------
-  Shader ourShader("./shaders/1.model_loading.vert", "./shaders/1.model_loading.frag");
-
+  Shader modelPBRShader("./shaders/1.model_loading.vert", "./shaders/1.model_loading.frag");
+  Shader lightShader("./shaders/light.vert","./shaders/light.frag");
   // load models
   // -----------
-  Model ourModel("./models/sponza/Sponza.gltf");
-
-  // draw in wireframe
-  //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+  Model sceneModel("./models/sponza/Sponza.gltf");
+  sceneModel.SetupGL();
+  shared_ptr<CubeMap> cube_map=make_shared<CubeMap>(1024);
+  cube_map->SetupGL();
+  cube_map->GenerateFromHDRTex("./skyboxes/Barcelona_Rooftops/Barce_Rooftop_C_3k.hdr");
+  Skybox skybox(cube_map);
+  int scrWidth, scrHeight;
+  glfwGetFramebufferSize(window, &scrWidth, &scrHeight);
+  glViewport(0, 0, scrWidth, scrHeight);
   // render loop
   // -----------
   while (!glfwWindowShouldClose(window))
@@ -111,31 +113,34 @@ int main()
 
     // render
     // ------
-    glClearColor(1.0f, 0.05f, 0.05f, 1.0f);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // don't forget to enable shader before setting uniforms
-    ourShader.use();
-    ourShader.setVec3("camPos",camera.Position);
-    for (unsigned int i = 0; i < sizeof(lightPositions) / sizeof(lightPositions[0]); ++i) {
-
-      ourShader.setVec3("lightPositions[" + std::to_string(i) + "]", lightPositions[i]);
-      ourShader.setVec3("lightColors[" + std::to_string(i) + "]", lightColors[i]);
-    }
     // view/projection transformations
     glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
     glm::mat4 view = camera.GetViewMatrix();
-    ourShader.setMat4("projection", projection);
-    ourShader.setMat4("view", view);
+    // don't forget to enable shader before setting uniforms
+    modelPBRShader.use();
+    modelPBRShader.setVec3("camPos", camera.Position);
+    for (unsigned int i = 0; i < sizeof(lightPositions) / sizeof(lightPositions[0]); ++i) {
+      modelPBRShader.setVec3("lightPositions[" + std::to_string(i) + "]", lightPositions[i]);
+      modelPBRShader.setVec3("lightColors[" + std::to_string(i) + "]", lightColors[i]);
+    }
+    modelPBRShader.setMat4("projection", projection);
+    modelPBRShader.setMat4("view", view);
 
     // render the loaded model
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
     model = glm::scale(model, glm::vec3(0.1F));	// it's a bit too big for our scene, so scale it down
-    ourShader.setMat4("model", model);
-    ourModel.Draw(ourShader);
+    modelPBRShader.setMat4("model", model);
+    sceneModel.Draw(modelPBRShader);
 
 
+    //render the lights
+    drawLight(lightShader);
+
+    skybox.Draw(projection,view);
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     // -------------------------------------------------------------------------------
     glfwSwapBuffers(window);
@@ -146,6 +151,28 @@ int main()
   // ------------------------------------------------------------------
   glfwTerminate();
   return 0;
+}
+void drawLight(Shader &shader) {
+  glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
+  glm::mat4 view = camera.GetViewMatrix();
+  shader.use();
+  shader.setMat4("projection", projection);
+  shader.setMat4("view", view);
+  shader.setVec3("camPos",camera.Position);
+  // render the loaded model
+  for (unsigned int i = 0; i < sizeof(lightPositions) / sizeof(lightPositions[0]); ++i) {
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, lightPositions[i]); // translate it down so it's at the center of the scene
+    model = glm::scale(model, glm::vec3(1.0f));	// it's a bit too big for our scene, so scale it down
+    shader.setMat4("model", model);
+    shader.setVec3("lightColor",lightColors[i]);
+    glEnable(GL_CULL_FACE);
+    Mesh::GetUnitSphereInstance()->Draw();
+    // always good practice to set everything back to defaults once configured.
+    glBindVertexArray(0);
+  }
+  glDisable(GL_CULL_FACE);
+
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly

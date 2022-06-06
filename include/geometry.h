@@ -16,15 +16,13 @@ struct Vertex {
   glm::vec3 Bitangent;
 
 };
-void ComputeTangentBasis(
-    std::vector<Vertex> &vertices,
-    std::vector<unsigned int> &indices
-);
+void ComputeTangentBasis(std::vector<Vertex> &vertices, std::vector<unsigned int> &indices);
+
 void ComputeBox(std::vector<Vertex> &vertices,
                 std::vector<unsigned int> &indices,
-                const glm::vec3 &size,
+                glm::vec3 size,
                 bool rhcoords,
-                bool invertn);
+                bool invertn) ;
 void ComputeSphere(std::vector<Vertex> &vertices,
                    std::vector<unsigned int> &indices,
                    float diameter,

@@ -52,7 +52,7 @@ inline void XMScalarSinCos(float *sin, float *cos, float radians) {
 //--------------------------------------------------------------------------------------
 void ComputeBox(std::vector<Vertex> &vertices,
                 std::vector<unsigned int> &indices,
-                glm::vec3 &size,
+                glm::vec3 size,
                 bool rhcoords,
                 bool invertn) {
   vertices.clear();

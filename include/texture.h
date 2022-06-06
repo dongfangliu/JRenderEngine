@@ -6,6 +6,7 @@
 #define JRENDERENGINE_INCLUDE_TEXTURE_H_
 #include <string>
 #include <vector>
+#include <memory>
 #include "glad/glad.h"
 #include <assimp/material.h>
 #include <assimp/pbrmaterial.h>
@@ -13,17 +14,18 @@ using namespace  std;
 class Texture {
  public:
   unsigned int id;
-  aiTextureType type;
   string path;
  private:
-  vector<unsigned char>data;
+  void *data = nullptr;
   int width,height, nrComponents;
   GLenum format;
+  GLenum internalFormat;
+  bool sRGB = false;
+  bool HDR = false;
  public:
-  Texture(const aiTextureType &type, const string &path);
+  Texture(const string &path,bool sRGB =false);
   Texture();
    ~Texture();
-
   void SetupGL() ;
 };
 
