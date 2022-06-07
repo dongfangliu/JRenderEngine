@@ -15,6 +15,7 @@ class CubeMap {
   vector<shared_ptr<Texture>> cubeTextures;
   void GenerateFromHDRTex(const string& hdrFilePath);
 
+  void DiffuseIrradianceCalFrom(shared_ptr<CubeMap> envMap);
   void SetupGL();
   explicit CubeMap(unsigned int map_resolution);
 };

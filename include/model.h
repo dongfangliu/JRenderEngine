@@ -37,7 +37,7 @@ public:
     Model(string const &path, bool gamma = false) ;
 
     // draws the model, and thus all its meshes
-    void Draw(Shader& shader);
+    void Draw(Shader& shader,int IBLDiffuseIrradianceMapId);
 
   void SetupGL();
  private:

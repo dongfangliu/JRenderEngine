@@ -13,7 +13,7 @@
 Model::Model(const string &path, bool gamma) : gammaCorrection(gamma) {
   loadModel(path);
 }
-void Model::Draw(Shader &shader) {
+void Model::Draw(Shader &shader,int IBLDiffuseIrradianceMapId=-1) {
   for (auto &mesh : meshes) {
     auto &material = materials[mesh.materialIndex];
     shader.setVec4("baseColorFactor", material.baseColorFactor);
@@ -39,6 +39,10 @@ void Model::Draw(Shader &shader) {
       shader.setInt("metallicRoughnessMap", 2);
       glActiveTexture(GL_TEXTURE2);
       glBindTexture(GL_TEXTURE_2D, textures_loaded[material.metallicRoughnessTexture]->id);
+    }
+    if(IBLDiffuseIrradianceMapId!=-1){
+      glActiveTexture(GL_TEXTURE3);
+      glBindTexture(GL_TEXTURE_CUBE_MAP, IBLDiffuseIrradianceMapId);
     }
     shader.setInt("alphaMode", material.alphaMode);
     shader.setFloat("alphaCutOff", material.alphaCutOff);

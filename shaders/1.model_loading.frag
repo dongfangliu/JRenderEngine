@@ -9,6 +9,7 @@ in mat3 TBN;
 uniform sampler2D baseColorMap;
 uniform sampler2D normalMap;
 uniform sampler2D metallicRoughnessMap;
+uniform samplerCube diffuseIrradianceMap;
 //uniform sampler2D aoMap;
 
 uniform vec4 baseColorFactor;
@@ -112,9 +113,9 @@ void main()
 
     vec3 N ;
     if(useNormalMap){
-    N =getNormalFromMap();
+        N =getNormalFromMap();
     }else{
-    N = Normal;
+        N = Normal;
     }
     vec3 V = normalize(camPos - WorldPos);
 
@@ -150,18 +151,16 @@ void main()
         vec3 kD = vec3(1.0) - kS;
 
         // scale light by NdotL
-        float NdotL = max(dot(N, L), 0.0);        
+        float NdotL = max(dot(N, L), 0.0);
+
 
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
     }   
-    
-    // ambient lighting (note that the next IBL tutorial will replace 
-    // this ambient lighting with environment lighting).
-    vec3 ambient = vec3(0.03) * albedo ;//* ao;
-    
-    vec3 color = ambient + Lo;
 
+    vec3 kS = fresnelSchlick(max(dot(N, V), 0.0), F0);
+    vec3 kD = 1.0 - kS;
+    vec3 color = Lo + kD*texture(diffuseIrradianceMap,N).rgb*albedo;
     // HDR tonemapping
     color = color / (color + vec3(1.0));
     // gamma correct

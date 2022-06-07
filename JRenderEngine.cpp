@@ -36,7 +36,7 @@ glm::vec3 lightPositions[] = {
     glm::vec3(0.0, 30.0, 0),
 };
 glm::vec3 lightColors[] = {
-    glm::vec3(1.0f, 1.0f, 1.0f),
+    glm::vec3(10.0f, 10.0f, 10.0f),
 };
 int main()
 {
@@ -90,10 +90,18 @@ int main()
   // -----------
   Model sceneModel("./models/sponza/Sponza.gltf");
   sceneModel.SetupGL();
-  shared_ptr<CubeMap> cube_map=make_shared<CubeMap>(1024);
-  cube_map->SetupGL();
-  cube_map->GenerateFromHDRTex("./skyboxes/Barcelona_Rooftops/Barce_Rooftop_C_3k.hdr");
-  Skybox skybox(cube_map);
+  shared_ptr<CubeMap> skyboxCubeMap=make_shared<CubeMap>(1024);
+  skyboxCubeMap->SetupGL();
+  skyboxCubeMap->GenerateFromHDRTex("./skyboxes/Barcelona_Rooftops/Barce_Rooftop_C_3k.hdr");
+  Skybox skybox(skyboxCubeMap);
+  // calculate diffuse irrandiance map from skybox
+  shared_ptr<CubeMap> diffuseIrradiance=make_shared<CubeMap>(32);
+  diffuseIrradiance->SetupGL();
+  diffuseIrradiance->DiffuseIrradianceCalFrom(skyboxCubeMap);
+
+
+
+
   int scrWidth, scrHeight;
   glfwGetFramebufferSize(window, &scrWidth, &scrHeight);
   glViewport(0, 0, scrWidth, scrHeight);
@@ -134,7 +142,8 @@ int main()
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
     model = glm::scale(model, glm::vec3(0.1F));	// it's a bit too big for our scene, so scale it down
     modelPBRShader.setMat4("model", model);
-    sceneModel.Draw(modelPBRShader);
+    modelPBRShader.setInt("diffuseIrradianceMap",3);
+    sceneModel.Draw(modelPBRShader, diffuseIrradiance->id);
 
 
     //render the lights
