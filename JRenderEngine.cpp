@@ -81,7 +81,7 @@ int main()
 
   // configure global opengl state
   // -----------------------------
-  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_DEPTH_TEST);glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
   // build and compile shaders
   // -------------------------
   Shader modelPBRShader("./shaders/1.model_loading.vert", "./shaders/1.model_loading.frag");
@@ -93,13 +93,19 @@ int main()
   shared_ptr<CubeMap> skyboxCubeMap=make_shared<CubeMap>(1024);
   skyboxCubeMap->SetupGL();
   skyboxCubeMap->GenerateFromHDRTex("./skyboxes/Barcelona_Rooftops/Barce_Rooftop_C_3k.hdr");
-  Skybox skybox(skyboxCubeMap);
+  glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxCubeMap->id);
+  glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
   // calculate diffuse irrandiance map from skybox
   shared_ptr<CubeMap> diffuseIrradiance=make_shared<CubeMap>(32);
   diffuseIrradiance->SetupGL();
   diffuseIrradiance->DiffuseIrradianceCalFrom(skyboxCubeMap);
 
+  shared_ptr<CubeMap> prefilterMap=make_shared<CubeMap>(128);
+  prefilterMap->SetupGL(true);
+  prefilterMap->PrefilterEnvMap(skyboxCubeMap);
 
+  Skybox skybox(prefilterMap);
 
 
   int scrWidth, scrHeight;
@@ -143,7 +149,7 @@ int main()
     model = glm::scale(model, glm::vec3(0.1F));	// it's a bit too big for our scene, so scale it down
     modelPBRShader.setMat4("model", model);
     modelPBRShader.setInt("diffuseIrradianceMap",3);
-    sceneModel.Draw(modelPBRShader, diffuseIrradiance->id);
+    //sceneModel.Draw(modelPBRShader, diffuseIrradiance->id);
 
 
     //render the lights
@@ -155,6 +161,7 @@ int main()
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
+
 
   // glfw: terminate, clearing all previously allocated GLFW resources.
   // ------------------------------------------------------------------

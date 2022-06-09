@@ -16,7 +16,9 @@ class CubeMap {
   void GenerateFromHDRTex(const string& hdrFilePath);
 
   void DiffuseIrradianceCalFrom(shared_ptr<CubeMap> envMap);
-  void SetupGL();
+  void PrefilterEnvMap(shared_ptr<CubeMap> envMap);
+  shared_ptr<Texture> CalBRDFLUT(shared_ptr<CubeMap> envMap);
+  void SetupGL(bool useMip = false);
   explicit CubeMap(unsigned int map_resolution);
 };
 
