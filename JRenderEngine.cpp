@@ -9,6 +9,7 @@
 #include "camera.h"
 #include "model.h"
 #include "skybox.h"
+#include "BRDFLUT.h"
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -84,11 +85,14 @@ int main()
   glEnable(GL_DEPTH_TEST);glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
   // build and compile shaders
   // -------------------------
+  BRDFLUT LUT(512);LUT.SetupGL();LUT.CalculateLUT();
   Shader modelPBRShader("./shaders/1.model_loading.vert", "./shaders/1.model_loading.frag");
   Shader lightShader("./shaders/light.vert","./shaders/light.frag");
   // load models
   // -----------
   Model sceneModel("./models/sponza/Sponza.gltf");
+//  Model sceneModel("./models/DamagedHelmet/DamagedHelmet.gltf");
+//  Model sceneModel("./models/MetalRoughSpheres/MetalRoughSpheres.gltf");
   sceneModel.SetupGL();
   shared_ptr<CubeMap> skyboxCubeMap=make_shared<CubeMap>(1024);
   skyboxCubeMap->SetupGL();
@@ -105,7 +109,7 @@ int main()
   prefilterMap->SetupGL(true);
   prefilterMap->PrefilterEnvMap(skyboxCubeMap);
 
-  Skybox skybox(prefilterMap);
+  Skybox skybox(skyboxCubeMap);
 
 
   int scrWidth, scrHeight;
@@ -148,8 +152,7 @@ int main()
     model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
     model = glm::scale(model, glm::vec3(0.1F));	// it's a bit too big for our scene, so scale it down
     modelPBRShader.setMat4("model", model);
-    modelPBRShader.setInt("diffuseIrradianceMap",3);
-    //sceneModel.Draw(modelPBRShader, diffuseIrradiance->id);
+    sceneModel.Draw(modelPBRShader, diffuseIrradiance->id,prefilterMap->id,LUT.id);
 
 
     //render the lights

@@ -128,7 +128,8 @@ void CubeMap::PrefilterEnvMap(shared_ptr<CubeMap> envMap) {
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_CUBE_MAP, envMap->id);
   glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
-  unsigned  int maxMipLevels = std::log(mapResolution) ;
+//  unsigned  int maxMipLevels = std::log(mapResolution) ;
+  unsigned  int maxMipLevels = 4;
   for(unsigned int mipLevel = 0;mipLevel<=maxMipLevels;mipLevel++){
     unsigned  int  mipWidth = static_cast<unsigned int>(mapResolution*std::pow(0.5,mipLevel));
     unsigned  int  mipHeight =static_cast<unsigned int> (mapResolution*std::pow(0.5,mipLevel));

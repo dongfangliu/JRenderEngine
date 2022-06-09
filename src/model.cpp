@@ -10,10 +10,12 @@
 #include <filesystem>
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
+#include <assimp/pbrmaterial.h>
+#include <assimp/material.h>
 Model::Model(const string &path, bool gamma) : gammaCorrection(gamma) {
   loadModel(path);
 }
-void Model::Draw(Shader &shader,int IBLDiffuseIrradianceMapId=-1) {
+void Model::Draw(Shader &shader,int IBLDiffuseIrradianceMapId=-1,int prefilteredMapId=-1,int LUTId=-1) {
   for (auto &mesh : meshes) {
     auto &material = materials[mesh.materialIndex];
     shader.setVec4("baseColorFactor", material.baseColorFactor);
@@ -41,9 +43,21 @@ void Model::Draw(Shader &shader,int IBLDiffuseIrradianceMapId=-1) {
       glBindTexture(GL_TEXTURE_2D, textures_loaded[material.metallicRoughnessTexture]->id);
     }
     if(IBLDiffuseIrradianceMapId!=-1){
+      shader.setInt("diffuseIrradianceMap",3);
       glActiveTexture(GL_TEXTURE3);
       glBindTexture(GL_TEXTURE_CUBE_MAP, IBLDiffuseIrradianceMapId);
     }
+    if(prefilteredMapId!=-1){
+      shader.setInt("prefilteredMap",4);
+      glActiveTexture(GL_TEXTURE4);
+      glBindTexture(GL_TEXTURE_CUBE_MAP, prefilteredMapId);
+    }
+    if(LUTId!=-1){
+      shader.setInt("BRDFLUT",5);
+      glActiveTexture(GL_TEXTURE5);
+      glBindTexture(GL_TEXTURE_2D, LUTId);
+    }
+
     shader.setInt("alphaMode", material.alphaMode);
     shader.setFloat("alphaCutOff", material.alphaCutOff);
 

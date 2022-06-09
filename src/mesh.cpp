@@ -3,7 +3,7 @@
 //
 #include "mesh.h"
 #include <glad/glad.h> // holds all OpenGL type declarations
-std::shared_ptr<Mesh> Mesh::UnitCubeInstance,Mesh::UnitSphereInstance;
+std::shared_ptr<Mesh> Mesh::UnitCubeInstance,Mesh::UnitSphereInstance,Mesh::UnitQuadInstance;
 Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices, unsigned int materialIndex) {
   this->vertices = vertices;
   this->indices = indices;

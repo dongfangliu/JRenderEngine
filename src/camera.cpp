@@ -5,7 +5,7 @@
 
 
 // Default camera values
-const float SPEED       =  2.5f;
+const float SPEED       =  20.0f;
 const float SENSITIVITY =  0.1f;
 const float ZOOM        =  60.0f;
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)

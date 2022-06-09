@@ -43,6 +43,23 @@ public:
       }
       return Mesh::UnitSphereInstance;
     };
+    static std::shared_ptr<Mesh> GetUnitQuadInstance(){
+    if(Mesh::UnitSphereInstance== nullptr){
+      Mesh::UnitQuadInstance = make_shared<Mesh>();
+      Mesh::UnitQuadInstance->vertices.push_back({glm::vec3(1.0f,  1.0f, 0.0f),glm::vec3(0,0,-1),glm::vec2(1,1)});
+      Mesh::UnitQuadInstance->vertices.push_back({glm::vec3(1.0f,  -1.0f, 0.0f),glm::vec3(0,0,-1),glm::vec2(1,0)});
+      Mesh::UnitQuadInstance->vertices.push_back({glm::vec3(-1.0f, -1.0f, 0.0f),glm::vec3(0,0,-1),glm::vec2(0,0)});
+      Mesh::UnitQuadInstance->vertices.push_back({glm::vec3(-1.0f,  1.0f, 0.0f),glm::vec3(0,0,-1),glm::vec2(0,1)});
+      Mesh::UnitQuadInstance->indices.push_back(0);
+      Mesh::UnitQuadInstance->indices.push_back(1);
+      Mesh::UnitQuadInstance->indices.push_back(3);
+      Mesh::UnitQuadInstance->indices.push_back(1);
+      Mesh::UnitQuadInstance->indices.push_back(2);
+      Mesh::UnitQuadInstance->indices.push_back(3);
+      Mesh::UnitQuadInstance->SetupGL();
+    }
+    return Mesh::UnitQuadInstance;
+  };
   // initializes all the buffer objects/arrays
   void SetupGL();
     void Draw() const;
@@ -50,7 +67,7 @@ public:
     // render data 
     unsigned int VBO{}, EBO{};
 
-    static std::shared_ptr<Mesh> UnitCubeInstance,UnitSphereInstance;
+    static std::shared_ptr<Mesh> UnitCubeInstance,UnitSphereInstance,UnitQuadInstance;
 
 };
 #endif

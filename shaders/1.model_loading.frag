@@ -9,7 +9,10 @@ in mat3 TBN;
 uniform sampler2D baseColorMap;
 uniform sampler2D normalMap;
 uniform sampler2D metallicRoughnessMap;
+
 uniform samplerCube diffuseIrradianceMap;
+uniform samplerCube prefilteredMap;
+uniform sampler2D BRDFLUT;
 //uniform sampler2D aoMap;
 
 uniform vec4 baseColorFactor;
@@ -135,8 +138,9 @@ void main()
         float attenuation = 1.0 / (distance * distance);
         vec3 radiance = lightColors[i] * attenuation;
         // Cook-Torrance BRDF
-        float NDF = D_GGX_TR(N, H, roughness);   
-        float G   = G_Smith(N, V, L, roughness);      
+        float NDF = D_GGX_TR(N, H, roughness);
+        float k =  (roughness+1)*(roughness+1)/8;
+        float G   = G_Smith(N, V, L, k);
         vec3 F    = fresnelSchlick(max(dot(H, V), 0.0), F0);
            
         vec3 numerator    = NDF * G * F; 
@@ -160,7 +164,17 @@ void main()
 
     vec3 kS = fresnelSchlick(max(dot(N, V), 0.0), F0);
     vec3 kD = 1.0 - kS;
+    // add IBL Diffuse part
     vec3 color = Lo + kD*texture(diffuseIrradianceMap,N).rgb*albedo;
+    // add IBL specular part
+    vec3 R= reflect(-V,N);
+    const int maxMipIndex = 4;
+    vec3 prefilteredEnvColor = textureLod(prefilteredMap, R,  roughness * maxMipIndex).rgb;
+    vec2 lut = texture(BRDFLUT,vec2(max(dot(N,V),0),roughness)).rg;
+    vec3 specular = prefilteredEnvColor*(F0*lut.r+lut.g);
+    color += kS*specular;
+
+
     // HDR tonemapping
     color = color / (color + vec3(1.0));
     // gamma correct

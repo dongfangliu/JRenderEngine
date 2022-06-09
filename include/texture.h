@@ -8,14 +8,11 @@
 #include <vector>
 #include <memory>
 #include "glad/glad.h"
-#include <assimp/material.h>
-#include <assimp/pbrmaterial.h>
 using namespace  std;
 class Texture {
  public:
   unsigned int id;
   string path;
- private:
   void *data = nullptr;
   int width,height, nrComponents;
   GLenum format;
@@ -26,7 +23,7 @@ class Texture {
   Texture(const string &path,bool sRGB =false);
   Texture();
    ~Texture();
-  void SetupGL() ;
+  virtual void SetupGL() ;
 };
 
 #endif //JRENDERENGINE_INCLUDE_TEXTURE_H_
