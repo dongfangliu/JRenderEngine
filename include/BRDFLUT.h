@@ -11,12 +11,9 @@ class BRDFLUT:public Texture {
  protected:
 
  public:
-  BRDFLUT(unsigned int resolution) {
+  explicit BRDFLUT(unsigned int resolution) : Texture(resolution,resolution,GL_RG,GL_RG32F,GL_CLAMP_TO_EDGE,GL_CLAMP_TO_EDGE){
 
-   this->width = resolution;
-   this->height = resolution;
  }
-  void SetupGL() override;
 
   void CalculateLUT();
 };

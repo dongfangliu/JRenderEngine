@@ -3,6 +3,7 @@ out vec4 FragColor;
 
 in vec2 TexCoords;
 in vec3 WorldPos;
+in vec4 LightSpaceFragPos;
 in vec3 Normal;
 in mat3 TBN;
 
@@ -13,6 +14,7 @@ uniform sampler2D metallicRoughnessMap;
 uniform samplerCube diffuseIrradianceMap;
 uniform samplerCube prefilteredMap;
 uniform sampler2D BRDFLUT;
+uniform sampler2D depthMap;
 //uniform sampler2D aoMap;
 
 uniform vec4 baseColorFactor;
@@ -25,6 +27,7 @@ uniform int alphaMode ;
 uniform float alphaCutOff;
 uniform int roughnessMode;
 uniform bool useNormalMap;
+
 
 uniform vec3 lightPositions[4];
 uniform vec3 lightColors[4];
@@ -101,7 +104,31 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0)
 {
     return F0 + (1.0 - F0) * pow(1.0 - cosTheta, 5.0);
 }
-
+float ShadowCalculation()
+{
+    float shadow =0.0f;
+    vec3 projCoords = LightSpaceFragPos.xyz / LightSpaceFragPos.w;
+    projCoords = projCoords*0.5+0.5;
+    //float bias =0;
+    float bias = max(0.05 * (1.0 - dot(Normal, normalize(lightPositions[0]-WorldPos))), 0.005);
+    vec2 texelSize = 1.0 / textureSize(depthMap, 0);
+    if(projCoords.z > 1.0){
+          return shadow;
+    }
+    float closestDepth = texture(depthMap, projCoords.xy).r;
+    // 取得当前片段在光源视角下的深度
+    float currentDepth = projCoords.z;
+    for(int x = -1; x <= 1; ++x)
+    {
+         for(int y = -1; y <= 1; ++y)
+        {
+            float pcfDepth = texture(depthMap, projCoords.xy + vec2(x, y) * texelSize).r;
+            shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+       }
+    }
+    shadow /= 9.0;
+    return shadow;
+}
 
 void main()
 {
@@ -135,7 +162,8 @@ void main()
         vec3 L = normalize(lightPositions[i] - WorldPos);
         vec3 H = normalize(V + L);
         float distance = length(lightPositions[i] - WorldPos);
-        float attenuation = 1.0 / (distance * distance);
+        //float attenuation = 1.0 / (distance * distance);
+        float attenuation=1.0f;
         vec3 radiance = lightColors[i] * attenuation;
         // Cook-Torrance BRDF
         float NDF = D_GGX_TR(N, H, roughness);
@@ -162,18 +190,21 @@ void main()
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
     }   
 
+    vec3 color = vec3(0);
+    vec3 IBL_Color = vec3(0);
     vec3 kS = fresnelSchlick(max(dot(N, V), 0.0), F0);
     vec3 kD = 1.0 - kS;
     // add IBL Diffuse part
-    vec3 color = Lo + kD*texture(diffuseIrradianceMap,N).rgb*albedo;
+    IBL_Color+= kD*texture(diffuseIrradianceMap,N).rgb*albedo;
     // add IBL specular part
     vec3 R= reflect(-V,N);
     const int maxMipIndex = 4;
     vec3 prefilteredEnvColor = textureLod(prefilteredMap, R,  roughness * maxMipIndex).rgb;
     vec2 lut = texture(BRDFLUT,vec2(max(dot(N,V),0),roughness)).rg;
     vec3 specular = prefilteredEnvColor*(F0*lut.r+lut.g);
-    color += kS*specular;
+    IBL_Color += kS*specular;
 
+    color=Lo*(1-ShadowCalculation())+IBL_Color;
 
     // HDR tonemapping
     color = color / (color + vec3(1.0));

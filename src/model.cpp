@@ -15,7 +15,11 @@
 Model::Model(const string &path, bool gamma) : gammaCorrection(gamma) {
   loadModel(path);
 }
-void Model::Draw(Shader &shader,int IBLDiffuseIrradianceMapId=-1,int prefilteredMapId=-1,int LUTId=-1) {
+void Model::Draw(Shader &shader,
+                 unsigned int ibl_diffuse_irradiance_map_id,
+                 unsigned int prefiltered_map_id,
+                 unsigned int LUT_id,
+                 unsigned int depth_map_id) {
   for (auto &mesh : meshes) {
     auto &material = materials[mesh.materialIndex];
     shader.setVec4("baseColorFactor", material.baseColorFactor);
@@ -27,35 +31,40 @@ void Model::Draw(Shader &shader,int IBLDiffuseIrradianceMapId=-1,int prefiltered
     if (!material.baseColorTexture.empty()) {
       shader.setInt("baseColorMap", 0);
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.baseColorTexture]->id);
+      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.baseColorTexture]->glResourceID);
     }
     if (!material.normalTexture.empty()) {
       shader.setInt("normalMap", 1);
       shader.setBool("useNormalMap", true);
       glActiveTexture(GL_TEXTURE1);
-      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.normalTexture]->id);
+      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.normalTexture]->glResourceID);
     } else {
       shader.setBool("useNormalMap", false);
     }
     if (!material.metallicRoughnessTexture.empty()) {
       shader.setInt("metallicRoughnessMap", 2);
       glActiveTexture(GL_TEXTURE2);
-      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.metallicRoughnessTexture]->id);
+      glBindTexture(GL_TEXTURE_2D, textures_loaded[material.metallicRoughnessTexture]->glResourceID);
     }
-    if(IBLDiffuseIrradianceMapId!=-1){
-      shader.setInt("diffuseIrradianceMap",3);
+    if (ibl_diffuse_irradiance_map_id != -1) {
+      shader.setInt("diffuseIrradianceMap", 3);
       glActiveTexture(GL_TEXTURE3);
-      glBindTexture(GL_TEXTURE_CUBE_MAP, IBLDiffuseIrradianceMapId);
+      glBindTexture(GL_TEXTURE_CUBE_MAP, ibl_diffuse_irradiance_map_id);
     }
-    if(prefilteredMapId!=-1){
-      shader.setInt("prefilteredMap",4);
+    if (prefiltered_map_id != -1) {
+      shader.setInt("prefilteredMap", 4);
       glActiveTexture(GL_TEXTURE4);
-      glBindTexture(GL_TEXTURE_CUBE_MAP, prefilteredMapId);
+      glBindTexture(GL_TEXTURE_CUBE_MAP, prefiltered_map_id);
     }
-    if(LUTId!=-1){
-      shader.setInt("BRDFLUT",5);
+    if (LUT_id != -1) {
+      shader.setInt("BRDFLUT", 5);
       glActiveTexture(GL_TEXTURE5);
-      glBindTexture(GL_TEXTURE_2D, LUTId);
+      glBindTexture(GL_TEXTURE_2D, LUT_id);
+    }
+    if (depth_map_id != -1) {
+      shader.setInt("depthMap", 6);
+      glActiveTexture(GL_TEXTURE6);
+      glBindTexture(GL_TEXTURE_2D, depth_map_id);
     }
 
     shader.setInt("alphaMode", material.alphaMode);
@@ -129,14 +138,14 @@ void Model::processMaterials(const aiScene *scene) {
     mat->Get(AI_MATKEY_TWOSIDED, doubleSided);
 
     this->materials.emplace_back(glm::vec4(bc_factor.r, bc_factor.g, bc_factor.b, bc_factor.a), metallicFactor,
-                               roughnessFactor,
-                               bc_str.length > 0 ? directory + "/" + bc_str.C_Str() : "",
-                               normal_str.length > 0 ? directory + "/" + normal_str.C_Str() : "",
-                               mr_str.length > 0 ? directory + "/" + mr_str.C_Str() : "",
-                               string(alphaMode.C_Str()).compare("MASK") ? 0 : 1,
-                               alphaCutOff,
-                               doubleSided
-                              );
+                                 roughnessFactor,
+                                 bc_str.length > 0 ? directory + "/" + bc_str.C_Str() : "",
+                                 normal_str.length > 0 ? directory + "/" + normal_str.C_Str() : "",
+                                 mr_str.length > 0 ? directory + "/" + mr_str.C_Str() : "",
+                                 string(alphaMode.C_Str()).compare("MASK") ? 0 : 1,
+                                 alphaCutOff,
+                                 doubleSided
+    );
 
     if (bc_str.length > 0) {
       loadMaterialTextures(mat, aiTextureType_DIFFUSE);
@@ -216,7 +225,7 @@ vector<shared_ptr<Texture>> Model::loadMaterialTextures(aiMaterial *mat, aiTextu
     bool skip = false;
     string texture_path = directory + "/" + str.C_Str();
     for (auto &j : textures_loaded) {
-      if (std::strcmp(j.second->path.data(), texture_path.data()) == 0 ) {
+      if (std::strcmp(j.second->path.data(), texture_path.data()) == 0) {
 
         textures.push_back(j.second);
         skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
@@ -224,7 +233,7 @@ vector<shared_ptr<Texture>> Model::loadMaterialTextures(aiMaterial *mat, aiTextu
       }
     }
     if (!skip) {   // if texture hasn't been loaded already, load it
-      shared_ptr<Texture>  texture = make_shared<Texture>(texture_path);
+      shared_ptr<Texture> texture = make_shared<Texture>(texture_path);
       textures.push_back(texture);
       textures_loaded[texture_path] =
           texture;  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
@@ -236,5 +245,19 @@ void Model::SetupGL() {
   for (auto &kv : textures_loaded) {
     kv.second->SetupGL();
   }
-  for(auto& mesh:meshes){mesh.SetupGL();}
+  for (auto &mesh : meshes) { mesh.SetupGL(); }
+}
+void Model::PureDraw() {
+  for (auto &mesh : meshes) {
+
+    auto &material = materials[mesh.materialIndex];
+    if (material.doubleSided) {
+      glDisable(GL_CULL_FACE);
+    } else {
+      glEnable(GL_CULL_FACE);
+    }
+    mesh.Draw();
+    glActiveTexture(GL_TEXTURE0);
+    glDisable(GL_CULL_FACE);
+  }
 }

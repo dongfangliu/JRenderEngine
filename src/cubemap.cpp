@@ -5,7 +5,7 @@
 #include "cubemap.h"
 #include "shader.h"
 void CubeMap::GenerateFromHDRTex(const string& hdrFilePath) {
-  shared_ptr<Texture> HDRTex= make_shared<Texture>(hdrFilePath,false);
+  shared_ptr<HDRTexture> HDRTex= make_shared<HDRTexture>(hdrFilePath);
   HDRTex->SetupGL();
   unsigned int captureFBO;
   unsigned int captureRBO;
@@ -28,7 +28,7 @@ void CubeMap::GenerateFromHDRTex(const string& hdrFilePath) {
   HDRToCubemapShader.setInt("HDRMap", 0);
   HDRToCubemapShader.setMat4("projection", captureProjection);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, HDRTex->id);
+  glBindTexture(GL_TEXTURE_2D, HDRTex->glResourceID);
 
   glViewport(0, 0, mapResolution, mapResolution); // don't forget to configure the viewport to the capture dimensions.
   glBindFramebuffer(GL_FRAMEBUFFER, captureFBO);
